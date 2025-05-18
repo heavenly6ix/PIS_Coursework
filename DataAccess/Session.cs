@@ -11,5 +11,10 @@ namespace DataAccess
         public static int CurrentSessionID { get; set; }
         public static string CurrentSessionName { get; set; }
 
+        public static void Reset()
+        {
+            CurrentSessionID = 0;
+            CurrentSessionName = null;
+        }
     }
 }

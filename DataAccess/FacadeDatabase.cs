@@ -19,6 +19,12 @@ namespace DataAccess
            _dbContext = DbContextFactory.Create();
         }
 
+        // Конструктор для тестов с внедрением контекста
+        public FacadeDatabase(LibraryContext context)
+        {
+            _dbContext = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
         //Методы для авторизации
         public bool AuthManager(string login, string password)
         {
@@ -63,6 +69,7 @@ namespace DataAccess
             {
                 DeleteCountProductInStock(item.IdProduct, (int)item.CountProduct);
             }
+            _dbContext.Orders.Update(Order);
             _dbContext.SaveChanges();
         }
         
